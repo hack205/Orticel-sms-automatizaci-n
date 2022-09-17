@@ -1,0 +1,8 @@
+gammu sendsms text '4924920534' -text "prueba"     -- mandar mensajes
+gammu getallsms  --obtener mensajes
+gammu --identify  --obtener la información del aparato
+gammu-config  --configurar el servidor
+dmesg | grep tty  -- obtener en los puertos donde esta conectado el aparato
+
+
+

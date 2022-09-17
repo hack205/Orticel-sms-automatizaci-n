@@ -1,3 +1,5 @@
+from re import X
+from typing import Text
 import gammu
 from Validations import Validations
 
@@ -18,14 +20,23 @@ def main():
                 sms = state_machine.GetNextSMS(Location=sms[0]["Location"], Folder=0)
             remain = remain - len(sms)
             for m in sms:
-                #if m["State"] == "UnRead":
+                if m["State"] == "UnRead":
                     print()
-                    #print("{:<15}: {}".format("Date", str(m["DateTime"])))
-                    #print("{:<15}: {}".format("State", m["State"]))
                     print("{:<15}: {}".format("Number", m["Number"]))
                     print("\n{}: {}".format("Texto", m["Text"]))
-                    #metodo de validación.
-                    print(validate.ValidationText('Hola mundo'))
+                    isValidate = validate.ValidationText(m["Text"])
+                    if(isValidate):
+                        print('es valido')
+                    else:
+                        print('no es valido')
+                        message = {
+                            'Text': 'Recuerda que el número tiene que tener 10 digitos',
+                            'SMSC': {'Location': 1},
+                            'Number': m["Number"]
+                        }
+                        print('mensaje',message)
+                    respuesta = state_machine.SendSMS(message)
+                    print(respuesta)
     except gammu.ERR_EMPTY:
         print("Failed to read all messages!")
 

@@ -1,6 +1,8 @@
 class Validations:
+
     def ValidationText(self, text):
-        if text == ('Hola mundo'):
-            print("si es igual")
-        
-        print(text)
+        valid = False        
+        if (len(text) == 10):
+            valid = True
+
+        return valid
