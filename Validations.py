@@ -1,8 +1,9 @@
+
+
 class Validations:
 
     def ValidationText(self, text):
-        valid = False        
+        valid = False
         if (len(text) == 10):
             valid = True
-
         return valid

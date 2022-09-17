@@ -28,15 +28,12 @@ def main():
                     if(isValidate):
                         print('es valido')
                     else:
-                        print('no es valido')
                         message = {
                             'Text': 'Recuerda que el número tiene que tener 10 digitos',
                             'SMSC': {'Location': 1},
                             'Number': m["Number"]
                         }
-                        print('mensaje',message)
-                    respuesta = state_machine.SendSMS(message)
-                    print(respuesta)
+                        state_machine.SendSMS(message)
     except gammu.ERR_EMPTY:
         print("Failed to read all messages!")
 
